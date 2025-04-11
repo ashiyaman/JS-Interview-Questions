@@ -1,20 +1,24 @@
 //settimeout
 
-/*function sayHi(name){
+function sayHi(name){
     console.log(`Hi, ${name}`)
 }
 
 setTimeout(sayHi, 5000, 'Ashiya')
 
-for(var i = 0; i < 5; i++){
-    setTimeout(() => console.log(`i is ${i}`))
-}
+console.log('Good morning')
 
 for(let i = 0; i < 5; i++){
     setTimeout(() => console.log(`i === ${i}`))
 }
 
-setTimeout(() => console.log('Hello'), 2000)*/
+setTimeout(() => console.log('Hello'), 2000)
+
+/*
+
+for(var i = 0; i < 5; i++){
+    setTimeout(() => console.log(`i is ${i}`))
+}
 
 let i = 0;
 
@@ -24,6 +28,6 @@ const intervalId = setInterval(() => {
     if(i === 4) {
         console.log(`${intervalId} is cleared`)
         clearInterval(intervalId)}
-}, 500)
+}, 500)*/
 
 //both settimeout and setinterval return timerid

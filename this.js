@@ -29,12 +29,22 @@ greetingName.call(greeting2)*/
 
 //This keyword
 
-let person1 = {
-    name: 'Ashiya',
-    age: 32,
-    printDetails: function(){
-        console.log(this.name + " " + this.age)
-    }
+let printDetails = function(city, designation){
+    console.log(this.name + " " + this.age + " " + city + " " + designation)
 }
 
-person1.printDetails()
+let person1 = {
+    name: 'Ashiya',
+    age: 32    
+}
+
+let person2 = {
+    name: 'Anish',
+    age: 28
+}
+
+let printData = printDetails.bind(person1)
+printData()
+
+printDetails.apply(person1, ["Bangalore", "Developer" ])
+printDetails.call(person2, "Chennai", "Tester")
