@@ -27,34 +27,14 @@ let greeting2 = {
 greetingName.call(greeting1)
 greetingName.call(greeting2)*/
 
-//using .bind
-
-let name = {
-    firstName: 'Ashiya',
-    lastName: 'Amanulla'
-}
-
-let printFullName = function(age, phone) {
-    console.log(this.firstName, this.lastName, age, phone)
-}
-
-printFullName.apply(name, [32, '12345'])
-
-let printDetails = function(){
-    console.log(this.name + " " + this.age)
-}
+//This keyword
 
 let person1 = {
     name: 'Ashiya',
-    age: 32   
+    age: 32,
+    printDetails: function(){
+        console.log(this.name + " " + this.age)
+    }
 }
 
-let person1Detail = printDetails.call(person1)
-console.log(person1Detail)
-
-let person2 = {
-    name: 'Rafeeq',
-    age: 35
-}
-
-printDetails.call(person2)
+person1.printDetails()
