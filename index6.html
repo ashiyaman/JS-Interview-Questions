@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Fetch</title>
+  <style>
+    #output {
+      font-family: Arial, sans-serif;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User Profile</h2>
+  <div id="output">Loading profile...</div>
+
+  <script>
+    const fakeFetch = (url) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (url === "https://example.com/api/profile/NC002") {
+            resolve({
+              status: 200,
+              data: {
+                message: "Success",
+                data: { id: "NC002", name: "Roshan", institute: "neoG Camp" }
+              }
+            });
+          } else {
+            reject({
+              status: 404,
+              message: "Resource not found"
+            });
+          }
+        }, 2000);
+      });
+    };
+
+    const outputDiv = document.getElementById("output");
+
+    fakeFetch("https://example.com/api/profile/NC002")
+      .then(response => {
+        const { name, institute } = response.data.data;
+        outputDiv.textContent = `Welcome!, ${name} from ${institute}`;
+      })
+      .catch(error => {
+        outputDiv.textContent = `Error ${error.status}: ${error.message}`;
+        outputDiv.style.color = "red";
+      });
+  </script>
+
+</body>
+</html>

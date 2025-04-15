@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Fetch - Data API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #output {
+      margin-top: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .success {
+      background-color: #e6ffe6;
+      color: #1d6b1d;
+      border: 1px solid #1d6b1d;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #a11a1a;
+      border: 1px solid #a11a1a;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Data Fetch Example</h2>
+  <div id="output">Fetching data...</div>
+
+  <script>
+    // ✅ Provided fakeFetch
+    const fakeFetch = (url) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (url === "https://example.com/api/data") {
+            resolve({
+              status: 200,
+              message: "Data fetched successfully",
+              data: { id: 1, name: "Sample Data" }
+            });
+          } else {
+            reject({
+              status: 404,
+              message: "Endpoint not found"
+            });
+          }
+        }, 2000);
+      });
+    };
+
+    const outputDiv = document.getElementById("output");
+
+    // ✅ Call the fake fetch
+    fakeFetch("https://example.com/api/data")
+      .then(response => {
+        outputDiv.textContent = `${response.message}: ${response.data.name}`;
+        outputDiv.className = "success";
+      })
+      .catch(error => {
+        outputDiv.textContent = `Error ${error.status}: ${error.message}`;
+        outputDiv.className = "error";
+      });
+  </script>
+
+</body>
+</html>

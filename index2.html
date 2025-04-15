@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Fetch - Item List</title>
+  <style>
+    #output {
+      margin-top: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-size: 16px;
+      width: fit-content;
+    }
+    .success {
+      background-color: #e7fbe7;
+      color: #246b24;
+      border: 1px solid #246b24;
+    }
+    .error {
+      background-color: #fde5e5;
+      color: #a72323;
+      border: 1px solid #a72323;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Item List</h2>
+  <div id="output">Fetching item list...</div>
+
+  <script>
+    // Provided fakeFetch function
+    const fakeFetch = (url) => {
+	return new Promise((resolve, reject) => {
+	  setTimeout(() => {
+	    if (url === "https://example.com/api/chat") {
+	      reject({
+	        status: 503,
+	        message: "Service Unavailable"
+	      });
+	    } else {
+	      resolve({
+	        status: 200,
+	        data: {
+	          message: "Success"
+	        }
+	      });
+	    }
+	  }, 2000);
+	});
+};
+
+// Your Code here
+const displayOutput = document.querySelector("#output");
+fakeFetch("https://example.com/api/chat")
+  .then((response) => console.log(response))
+  .catch((error) => {
+    if (error.status === 503) {
+      displayOutput.textContent = "We are facing high demand at the moment. Please check back later in sometime.";
+    }
+  });
+
+
+// Output on the DOM should be: 
+// We are facing high demand at the moment. Please check back later in sometime.
+    const outputDiv = document.getElementById("output");
+
+    fakeFetch("https://example.com/api/itemlist")
+      .then(response => {
+        outputDiv.textContent = `${response.message}: ${response.data.join(", ")}`;
+        outputDiv.className = "success";
+      })
+      .catch(error => {
+        outputDiv.textContent = `Error ${error.status}: ${error.message}`;
+        outputDiv.className = "error";
+      });
+  </script>
+
+</body>
+</html>

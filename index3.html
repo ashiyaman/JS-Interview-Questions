@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Item List Fetch</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    ol {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+
+    .error {
+      color: red;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Item List</h2>
+  <div id="output">Loading items...</div>
+
+  <script>
+    const fakeFetch = (url) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (url === "https://example.com/api/itemlist") {
+            resolve({
+              status: 200,
+              message: "Success",
+              data: [
+                { itemName: "Bread", price: 30, quantity: 10 },
+                { itemName: "Water Bottle", price: 50, quantity: 50 },
+                { itemName: "Dairy Milk", price: 20, quantity: 30 }
+              ]
+            });
+          } else {
+            reject({
+              status: 404,
+              message: "Items list not found."
+            });
+          }
+        }, 2000);
+      });
+    };
+
+    const outputDiv = document.getElementById("output");
+
+    fakeFetch("https://example.com/api/itemlist")
+      .then(response => {
+        const list = document.createElement("ol");
+        response.data.forEach(item => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${item.itemName} -- INR ${item.price} -- ${item.quantity}`;
+          list.appendChild(listItem);
+        });
+        outputDiv.textContent = ""; // Clear loading text
+        outputDiv.appendChild(list);
+      })
+      .catch(error => {
+        outputDiv.textContent = `Error ${error.status}: ${error.message}`;
+        outputDiv.className = "error";
+      });
+  </script>
+
+</body>
+</html>
