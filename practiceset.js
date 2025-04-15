@@ -44,7 +44,7 @@ isUserLoggedIn
 //ps-4
 
 let isUserFound = new Promise((resolve, reject) => {
-    //let user = { name: "Alice", age: 25 }
+    let user = { name: "Alice", age: 25 }
     if(user){
         resolve(user)
     }
@@ -54,5 +54,65 @@ let isUserFound = new Promise((resolve, reject) => {
     
 })
 isUserFound
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error))
+
+//ps-5
+
+let resolveAfterTimeout = new Promise((resolve, reject) => {
+    setTimeout(resolve(42), 2000)    
+})
+resolveAfterTimeout
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error))
+
+//ps-6
+
+let rejectAfterTimeout = new Promise((resolve, reject) => {
+    setTimeout(reject(500), 3000)    
+})
+rejectAfterTimeout
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error))
+
+//ps-7
+
+let checkPassword = (password) => new Promise((resolve, reject) => {
+    if(password == '12345'){
+        resolve("Password accepted",)
+    }
+    else{
+        reject("Invalid password")
+    }
+})
+checkPassword('1345')
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error))
+
+//ps-8
+
+let checkEmail = (email) => new Promise((resolve, reject) => {
+    if(email.includes('@')){
+        resolve("Valid Email")
+    }
+    else{
+        reject("Invalid Email")
+    }
+})
+checkEmail('sdsef@df')
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error))
+
+//ps-9
+
+let fetchTemperature = (temp) => new Promise((resolve, reject) => {
+    if(temp > 15){
+        resolve("Temperature is 20°C")
+    }
+    else{
+        reject("Temperature too low")
+    }
+})
+fetchTemperature(20)
     .then((message) => console.log(message))
     .catch((error) => console.log(error))
