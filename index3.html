@@ -59,7 +59,7 @@
           listItem.textContent = `${item.itemName} -- INR ${item.price} -- ${item.quantity}`;
           list.appendChild(listItem);
         });
-        outputDiv.textContent = ""; // Clear loading text
+        outputDiv.textContent = ""; 
         outputDiv.appendChild(list);
       })
       .catch(error => {
