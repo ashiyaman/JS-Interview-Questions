@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <ul id="maleChar"></ul>
+  </body>
+  <script>
+    const numSmallerThan8 = (numArray) => {
+      return numArray.filter((num) => num <= 8);
+    };
+    const arrOfNumbers = [3, 6, 10, 8, 2, 5, 13, 15];
+    const filterArray = numSmallerThan8(arrOfNumbers);
+    console.log("Original Array: ", arrOfNumbers);
+    console.log(filterArray);
+    console.log("=====================================================");
+
+    const arrOfWords = ["neoG", "is", "family", "love", "hackathon", "camping"];
+    console.log("Given String Array: ", arrOfWords);
+    console.log(arrOfWords.filter((word) => word.length <= 5));
+
+    const characters = [
+      {
+        name: "Luke Skywalker",
+        height: 172,
+        eye_color: "blue",
+        gender: "male",
+      },
+      {
+        name: "Darth Vader",
+        height: 202,
+        eye_color: "orange",
+        gender: "male",
+      },
+      {
+        name: "Leia Organa",
+        height: 150,
+        eye_color: "brown",
+        gender: "female",
+      },
+      {
+        name: "Anakin Skywalker",
+        height: 188,
+        eye_color: "blue",
+        gender: "male",
+      },
+    ];
+    console.log("=====================================================");
+    console.log("Male Character: ");
+    console.log(
+      characters.filter((char) => char.gender.toLowerCase() === "male")
+    );
+
+    console.log("=====================================================");
+    console.log("Character whose height is greater than 170: ");
+    console.log(characters.filter((char) => char.height > 170));
+
+    const maleCharWithHt180 = characters.filter(
+        (char) => char.gender.toLowerCase() === "male" && char.height > 180
+      );
+    
+    const maleCharDiv = document.getElementById("maleChar");
+    maleCharWithHt180.map((char) => {
+      const liElement = document.createElement("li");
+      liElement.innerHTML = char.name;
+      liElement.style.color = char.eye_color
+      liElement.style.listStyleType = 'none'
+      liElement.style.textAlign = 'center'
+      liElement.style.fontSize = '30px'
+      liElement.style.margin = '30px 0px'
+      maleCharDiv.appendChild(liElement);
+    });
+  </script>
+</html>
