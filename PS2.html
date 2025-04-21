@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>Age</h3>
+        <input type='number' id="age" />
+        <button id="checkAgeBtn">Check Age</button>
+        <p id="displayAge"></p>
+
+        <h3>Name</h3>
+        <input type='text' id="firstname" />
+        <input type='text' id="lastname" />
+        <button id="acceptNameBtn" disabled>Accept Name</button>
+        <p id="displayFullName"></p>
+    </body>
+
+    <script>
+        const ages = [5, 10, 18, 30, 21, 22];
+        console.log(ages.find(age => age > 21))
+
+        const age = document.getElementById("age")
+        const checkAgeBtn = document.getElementById("checkAgeBtn")
+        const displayAge = document.getElementById("displayAge")
+
+        const firstname = document.getElementById("firstname")
+        const lastname = document.getElementById("lastname")
+        const acceptNameBtn = document.getElementById("acceptNameBtn")
+        const displayFullName = document.getElementById("displayFullName")
+
+        checkAgeBtn.addEventListener("click", (e) => {
+            const ageValue = age.value
+            console.log(age)
+            displayAge.textContent = "Age: " + ageValue
+            if(ageValue > 21){
+                displayAge.style.color = 'orange'
+            }
+            else{
+                displayAge.style.color = 'blue'
+            }
+        })
+
+        function checkInputs(){
+            if(firstname.value !== '' && lastname.value !== ''){
+                acceptNameBtn.disabled = false
+            }
+        }
+
+        acceptNameBtn.addEventListener("click" , () => {
+            displayFullName.textContent = firstname.value + "-" + lastname.value
+        })
+        
+        firstname.addEventListener("change", checkInputs)
+        lastname.addEventListener("change", checkInputs)
+
+    </script>
+</html>
